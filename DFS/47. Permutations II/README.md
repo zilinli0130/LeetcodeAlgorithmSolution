@@ -5,15 +5,20 @@ The way to prune DFS branches is to skip duplicate elements by keeping track of 
 element is the same as the current element, it is legit to skip it.
 
 ```
+sort(nums.begin(), nums.end());
+
 void dfs() {
+
   if () {
     return;
   }
   
   int lastNum = INT_MIN;
   for (int i = 0; i < nums.size(); i++) {
+  
+    //Skip the duplicate elements
     if (nums[i] == lastNum) continue;
-      dfs()
+      dfs();
     }
   }
 ```
