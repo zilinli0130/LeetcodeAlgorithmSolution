@@ -6,7 +6,7 @@ element is the same as the current element, it is legit to skip it.
 
 
 `void dfs() {`
-  `if () {
+  `if () {`
     `return;`
   }`
   
