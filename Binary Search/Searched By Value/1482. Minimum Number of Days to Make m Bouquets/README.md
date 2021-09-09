@@ -2,7 +2,7 @@
 
 ###### Tag: Binary Search, Searched By Value
 
-An efficient way to approach this problem is to guess the answer by binary search. The maximum number of times to guess a value is 32. The binary search template is provided below:
+An efficient way to approach this problem is to guess the answer by binary search. The maximum number of times to guess a value is 32. The binary search template is provided below: (This tempate is for searching a min value)
 
 ```
 int low = 1, high = INT_MAX;
