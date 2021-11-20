@@ -1,34 +1,46 @@
 class Solution {
+    vector<int> Tasks;
+    vector<int> Workers;
 public:
-    int minimizedMaximum(int n, vector<int>& quantities) {
+    int maxTaskAssign(vector<int>& tasks, vector<int>& workers, int pills, int strength) {
+    
         
-        int left = 1, right = INT_MAX/2;
+        int left = 0, right = tasks.size();
+        sort(tasks.begin(), tasks.end()); 
+        Tasks = tasks;
+        Workers = workers;
         
         while (left < right) {
             
-            int mid = left + (right - left)/2;
-            if (ok(quantities, n, mid)) {
-                right = mid;
+            int mid = right - (right - left) / 2;
+            if (isCompleted(pills, strength, mid)) {
+                left = mid;
             } else {
-                left = mid + 1;
+                right = mid - 1;
             }
         }
-        return right;
+        return left;
     }
     
-    bool ok(vector<int>& quantities, int n, int mid) {
+    bool isCompleted(int pills, int strength, int mid) {
         
-        int count = 0;
-        for (int i = 0; i < quantities.size(); i++) {
+        if (mid > Workers.size()) return false;
+        multiset<int> Set(Workers.begin(), Workers.end());
+        
+        for (int i = mid - 1; i >= 0; i--) {
             
-            if (quantities[i] % mid != 0) {
-                count += quantities[i] / mid +1;
+            if (*Set.rbegin() >= Tasks[i]) {
+                Set.erase(prev(Set.end()));
             } else {
-                count += quantities[i] / mid;
+                
+                if (pills == 0) return false;
+                auto Worker = Set.lower_bound(Tasks[i] - strength);
+                if (Worker == Set.end()) return false;
+                Set.erase(Worker);
+                pills--;
             }
-        }        
-        return count <= n;
+        }
+        return true;
     }
 };
 
-    
