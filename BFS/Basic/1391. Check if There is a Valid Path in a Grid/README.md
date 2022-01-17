@@ -1,4 +1,4 @@
-# 221. 1391. Check if There is a Valid Path in a Grid
+# 1391. Check if There is a Valid Path in a Grid
 
 ###### Tag: BFS, Basic
 
