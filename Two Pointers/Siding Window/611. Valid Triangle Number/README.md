@@ -1,0 +1,4 @@
+# 611. Valid Triangle Number
+###### Tag: Two Pointers, Sliding Window
+
+We can use `i,j,k` to represent the valid indexes of nums to form a triangle. If we make the `k` position static, we use two pointers `i,j` to iterate through all the possibility between nums indexes of `0~k-1`. (sort the nums array). If the sum between `nums[i]` and `nums[j]` is less than `nums[k]`, we keep increasing the index `i` until `nums[i] + nums[j] > nums[k]`. Then all the indexes from `i~j-1` can form a triangle with indexes of `j` and `k`. We then further decrease the `j` pointer to make the range smaller to explore more possibilities.  
