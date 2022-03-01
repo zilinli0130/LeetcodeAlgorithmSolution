@@ -24,7 +24,6 @@ public:
             while (len--) {
                 
                 string cur = q.front();
-                cout << cur << endl;
                 q.pop();
 
                 if (visited.find(cur) != visited.end()) continue;
