@@ -19,6 +19,7 @@ public:
         
         for (int i = 1; i < m; i++)            
         {
+            //from 0,1,2,...j
             LL curMax = INT_MIN;            
             for (int j = 0; j < n; j++)
             {
@@ -27,8 +28,9 @@ public:
                 res = max(res, dp[i][j]);
             }
             
+            //from j+1,j+2,...n-1
             curMax = INT_MIN;            
-            for (int j=n - 1; j >= 0; j--)
+            for (int j = n - 1; j >= 0; j--)
             {
                 curMax = max(curMax, dp[i - 1][j] - j);
                 dp[i][j] = max(dp[i][j], curMax + points[i][j] + j);
