@@ -1,45 +1,28 @@
 class Solution {
+    static bool cmp(string& a, string& b) {
+        if (a.size() == b.size()) {
+            return a < b;
+        }
+        return a.size() > b.size();
+    }
 public:
-    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    string findLongestWord(string s, vector<string>& dictionary) {
         
-        int idx1 = m - 1, idx2 = n - 1, idx = m + n - 1;
-        while ((idx1 >= 0 || idx2 >= 0) && idx >= 0) {
+        string res = "";
+        sort(dictionary.begin(), dictionary.end(), cmp);
+        for (const auto& word : dictionary) {
             
-            if (idx1 < 0) {
-                
-                while (idx >= 0) {
-                    nums1[idx] = nums2[idx2];
-                    idx2--;
-                    idx--;
+            int idx1 = 0, idx2 = 0;
+            while (idx2 < s.size()) {
+                if (s[idx2] == word[idx1]) {
+                    idx1++;
                 }
-                return;
-            } else if (idx2 < 0) {
-                
-                while (idx >= 0) {
-                    nums1[idx] = nums1[idx1];
-                    idx1--;
-                    idx--;
-                }
-                return;
+                idx2++;
             }
-            
-            if (nums1[idx1] > nums2[idx2]) {
-                nums1[idx] = nums1[idx1];
-                idx1--;
-                idx--;
-            } else if (nums1[idx1] < nums2[idx2]) {
-                nums1[idx] = nums2[idx2];
-                idx2--;
-                idx--;
-            } else if (nums1[idx1] == nums2[idx2]) {
-                nums1[idx] = nums1[idx1];
-                idx--;
-                nums1[idx] = nums2[idx2];
-                idx--;
-                idx1--;
-                idx2--;
+            if (idx1 == word.size()) {
+                return word;
             }
         }
-        return;
+        return res;
     }
 };
