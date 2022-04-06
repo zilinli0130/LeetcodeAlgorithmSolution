@@ -7,9 +7,9 @@
 We could maintain a min heap with size of `k` and loop through the array. The `Kth` largest element would
 be the top element of the min heap after finishing the loop.
 
-Follow-up: Binary Search (Searched by Value)
+Follow-up 1: Binary Search (Searched by Value)
 
-if we assume that the number `m` is the `kth` largest element, then the count of numbers which are greater than or equal to `m` must be greater than or equal to `k`. Ohterwise, the number `m` must not be the `kth` largest element.
+If we assume that the number `m` is the `kth` largest element, then the count of numbers which are greater than or equal to `m` must be greater than or equal to `k`. Ohterwise, the number `m` must not be the `kth` largest element.
 
 
 ```
@@ -40,4 +40,50 @@ public:
         return res;
     }
 };
+```
+```
+Follow-up 2: Quick Select
+Time: average O(N), worst O(N^2)
+Space: recursion call stack depth
+
+We could find a pivot and put all the numbers which are smaller than pivot to the left and put all the numbers which are greater than the pivot
+to the right. Afterward, we need to recursively find the Kth element inside nums based on the size of small nunber subarray, pivot subarray and
+large number subarray.
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        return quickSelect(nums, 0, nums.size() - 1, k);
+    }
+    
+    int quickSelect(vector<int>& nums, int st, int en, int k) {
+        
+        int pivot = nums[(st + en)/2];
+        int leftIdx = st, midIdx = st, rightIdx = en;
+        
+        while (midIdx <= rightIdx) {
+            
+            if (nums[midIdx] < pivot) {
+                swap(nums[midIdx], nums[leftIdx]);
+                leftIdx++;
+                midIdx++;
+            } else if (nums[midIdx] > pivot) {
+                swap(nums[midIdx], nums[rightIdx]);
+                rightIdx--;
+            } else {
+                midIdx++;
+            }
+        }
+        
+        if (en - rightIdx >= k) {
+            return quickSelect(nums, rightIdx + 1, en, k);
+        } else if (en - leftIdx + 1 >= k) {
+            return pivot;
+        } else {
+            return quickSelect(nums, st, leftIdx - 1, k - (en - leftIdx + 1));
+        }
+        
+    }
+};
+
 ```
