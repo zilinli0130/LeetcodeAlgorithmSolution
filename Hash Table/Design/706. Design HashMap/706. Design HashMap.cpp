@@ -1,15 +1,3 @@
-# 706. Design HashMap
-
-###### Tag: Linked List, Design
-
-###### Time: O(N)
-###### Space: O(N)
-
-Use linked list data structure to implement the hash map
-
-```
-Follow-up: vector of list of linked list
-
 class MyHashMap {
 private:
     int size;
@@ -122,7 +110,3 @@ private:
  * int param_2 = obj->get(key);
  * obj->remove(key);
  */
-
-
-
-```
