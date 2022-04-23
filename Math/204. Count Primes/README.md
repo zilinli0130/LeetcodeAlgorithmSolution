@@ -30,4 +30,14 @@ while (num > 1) {
     }
     prime++;
 }
+
+Check if a number n is prime number or not:
+we need to only loop through all its factor in the range of [2, sqrt(n)]. 
+
+Since for any random integers a,b which satisfy axb=n:
+if a >= sqrt(n), then b <= sqrt(n)
+if a <= sqrt(n), then b >= sqrt(n)
+
+It means that if we can not find a random factor a inside the range of [2, sqrt(n)], we can not find its pair factor b inside the range of [sqrt(n), n-1]
+
 ```
