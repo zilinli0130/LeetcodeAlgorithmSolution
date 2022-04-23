@@ -15,14 +15,17 @@ could dramatically reduce the time complexity to `O(N*loglogN)`.
 
 ```
 Follow-up: Find all the prime factor for a given number
-Time: O(logN) for composite number, O(N) for prime number
+Time: O(logN) for composite number, O(N) for prime number (potential TLE)
+                                    O(logN) for prime number(need to check if the number is prime number firstly)
 Space: O(1)
 
 vector<int> res;
 int num = 100000, prime = 2;
 while (num > 1) {
 
-    cout << num << endl;
+    if (isPrime(num)) {
+        return vector<int>{num};
+    }
     if (num % prime == 0) {
         num /= prime;
         res.push_back(prime);
@@ -40,4 +43,12 @@ if a <= sqrt(n), then b >= sqrt(n)
 
 It means that if we can not find a random factor a inside the range of [2, sqrt(n)], we can not find its pair factor b inside the range of [sqrt(n), n-1]
 
+bool isPrime(const int& n) {
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
 ```
