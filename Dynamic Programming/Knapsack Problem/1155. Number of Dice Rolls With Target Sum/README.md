@@ -2,8 +2,8 @@
 
 ###### Tag: Dynamic Programming
 
-###### Time: O(n*k*target)
-###### Space: O(n*k*target)
+###### Time: O(n * k * target)
+###### Space: O(n * k * target)
 
 This is a dynamic programming problem. We could define `dp[i][k]` as the ways to get total sum of `k` by given `i` number of dices.
 The transition state function is listed below:
