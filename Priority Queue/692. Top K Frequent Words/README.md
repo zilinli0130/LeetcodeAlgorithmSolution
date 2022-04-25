@@ -34,13 +34,23 @@ public:
         // Time: average O(N), worse case O(N^2) 
         quickSelect(strList, 0, strList.size() - 1, k);
         
-        // Time: O(klogk) if k << n
-        sort(strList.begin(), strList.end(), [](PII& s1, PII& s2) {
-            if (s1.second == s2.second) {
-                return s1.first < s2.first;
-            }
-            return s1.second > s2.second;
-        });
+        // Time: O(klogk) if k << n, O(NlogN) in worst case
+        if (k < strList.size()) {
+             sort(strList.begin(), strList.begin() + k, [](PII& s1, PII& s2) {
+                if (s1.second == s2.second) {
+                    return s1.first < s2.first;
+                }
+                return s1.second > s2.second;
+            });
+            
+        } else if (k == temp.size()) {
+            sort(strList.begin(), strList.end(), [](PII& s1, PII& s2) {
+                if (s1.second == s2.second) {
+                    return s1.first < s2.first;
+                }
+                return s1.second > s2.second;
+            });
+        }
         
         // Time: O(k)
         vector<string> res;
