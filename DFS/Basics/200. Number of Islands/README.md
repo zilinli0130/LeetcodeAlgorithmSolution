@@ -2,4 +2,7 @@
 
 ###### Tag: DFS
 
-This is a basic DFS problem.
+###### Time: O(M*N)
+###### Space: O(M*N)
+
+Basic DFS problem.
