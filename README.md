@@ -1,1 +1,1 @@
-# Leetcode_Algorithm
+# Leetcode Algorithm Solution
